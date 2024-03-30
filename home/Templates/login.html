@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block second %}
+
+
+<!--<form class="col-6 mx-auto card p-3 shadow-lg" method="post">-->
+<!--    {% csrf_token %}-->
+<!--    <h1>LOGIN</h1>-->
+<!--    {% if messages %}-->
+<!--    <ul class="messages">-->
+<!--    {% for message in messages %}-->
+<!--    <div class="alert alert-primary" role="alert">-->
+<!--        {{message}}-->
+<!--    </div>-->
+
+
+<!--    {% endfor %}-->
+<!--    </ul>-->
+<!--   {% endif %}-->
+<!--    <div class="form-group">-->
+<!--      <label for="exampleInputEmail1">Email address</label>-->
+<!--      <input type="email" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
+<!--      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+<!--    </div>-->
+<!--    <div class="form-group pb-8">-->
+<!--      <label for="exampleInputPassword1">Password</label>-->
+<!--      <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
+<!--    </div>-->
+<!--    &lt;!&ndash; <div class="form-check">-->
+<!--      <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--      <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+<!--    </div> &ndash;&gt;-->
+<!--    <small id="emailHelp" class="form-text text-muted">Don't have an account? <a href="/signup/">sign-up</a></small>-->
+<!--    <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--  </form>-->
+
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #36393f;
+            color: white;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .login-container {
+            width: 500px;
+            margin: auto;
+            padding: 20px;
+            background-color: #2f3136;
+            border-radius: 5px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 3px;
+        }
+        .btn {
+            width: 95%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #5865f2;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #4752c4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+     <form method="post">
+    {% csrf_token %}
+    <h2>Login to Chatrooms</h2>
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <button class="btn" onclick="login()">Login</button>
+    <p>New user? <a href="/signup">signup</a></p>
+     </form>
+</div>
+
+<script>
+    function login() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        // Inline JavaScript for demonstration. Actual login logic should be handled securely.
+        if(username === '' || password === '') {
+            alert('Please enter both username and password.');
+        } else {
+            // Just a placeholder for actual authentication process
+            alert('Login attempted for ' + username);
+        }
+    }
+</script>
+
+{% endblock %}

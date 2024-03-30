@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block second %}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Discord-like Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            background-color: #36393f;
+            color: white;
+        }
+        .sidebar {
+            width: 100px;
+            background-color: #2f3136;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+            height: 100%;
+        }
+        .sidebar img {
+            width: 40px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .icon-container{
+            width: 40px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            scale:1.2;
+            background-color:pink;
+            height:40px;
+            color:white;
+        }
+        .chat-area {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #42454a;
+            border-radius: 5px;
+            width: fit-content;
+            max-width: 70%;
+        }
+        .input-area {
+            position: fixed;
+            bottom: 0;
+            left: 100px; /* sidebar width */
+            right: 50px;
+            width: calc(100% - 100px); /* full width minus sidebar */
+            padding: 10px;
+            background-color: #2f3136;
+        }
+        .input-area input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #40444b;
+            color: white;
+        }
+        .link{
+         color:white;
+        }
+        .create-join{
+        color:white;
+        background-color:#7f7fc4;
+        }
+        .icon-text{
+        font-size:1.2em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <!-- Placeholder icons for chat groups -->
+    <div class="icon-container">
+  <i class="fas fa-home"></i>
+    </div>
+
+    {% for r in chatroomnames %}
+    <a style="text-decoration:none" href="/chat/{{r}}">
+    <div class="icon-container icon-text" style="scale:1">
+       {{r|slice:":1"}}
+    </div>
+    </a>
+    {% endfor %}
+
+    <a style="text-decoration:none" href="/createjoin">
+        <div class="icon-container create-join" style="scale:1">
+        <i class="fa-solid fa-plus"></i>
+        </div>
+    </a>
+
+</div>
+
+<div class="chat-area">
+    <h1> HEY @{{user.username}}</h1>
+    <!-- Placeholder messages in the chat -->
+    <div class="message">Hello, welcome to the chat!</div>
+    <div class="message">This is a simple message.</div>
+    <!-- More messages can be added here -->
+</div>
+
+
+</body>
+
+
+
+{% endblock %}

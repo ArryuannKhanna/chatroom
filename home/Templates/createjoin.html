@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block second %}
+<head>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Discord-like Home Page</title>
+    <style>
+        body {
+            position:absolute;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            background-color: #36393f;
+            color: white;
+            width:100%;
+        }
+        .sidebar {
+            width: 100px;
+            background-color: #2f3136;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 30px;
+            height: 100%;
+        }
+        .sidebar img {
+            width: 40px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .chat-area {
+            font-family: 'Arial', sans-serif;
+            background-color: #36393f;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #42454a;
+            border-radius: 5px;
+            width: fit-content;
+            max-width: 70%;
+        }
+        .input-area {
+            position: fixed;
+            bottom: 0;
+            left: 100px; /* sidebar width */
+            right: 50px;
+            width: calc(100% - 100px); /* full width minus sidebar */
+            padding: 10px;
+            background-color: #2f3136;
+        }
+        .input-area input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #40444b;
+            color: white;
+        }
+
+        .form-container {
+            width:100%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        .form-container-inner{
+        padding: 20px;
+        width: 400px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        background-color: #2f3136;
+        border-radius: 8px;
+        }
+        .form-title {
+            text-align: center;
+            color: #7289da;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+            background-color: #40444b;
+            color: #dcddde;
+        }
+        .form-group input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #7289da;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #7289da;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+        .form-group button:hover {
+            background-color: #5b6eae;
+        }
+        .icon-container{
+            width: 40px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background-color:pink;
+            height:40px;
+            color:white;
+        }
+        .link{
+         color:white;
+        }
+        .create-join{
+        scale:1.2;
+        color:white;
+        background-color:#7f7fc4;
+        }
+        .icon-text{
+        font-size:1.2em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <!-- Placeholder icons for chat groups -->
+    <a href="/" class="link">
+    <div class="icon-container">
+  <i class="fas fa-home"></i>
+    </div>
+    </a>
+
+    {% for r in chatroomnames %}
+    <a style="text-decoration:none" href="/chat/{{r}}">
+    <div class="icon-container icon-text" style="scale:1">
+       {{r|slice:":1"}}
+    </div>
+    </a>
+    {% endfor %}
+
+    <a style="text-decoration:none" href="/createjoin">
+        <div class="icon-container create-join">
+        <i class="fa-solid fa-plus"></i>
+        </div>
+    </a>
+</div>
+
+<div class="form-container">
+    <div class ="form-container-inner">
+        <h2 class="form-title">Join or Create a Room</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="roomName">Room Name</label>
+                <input type="text" id="roomName" name="roomName" placeholder="Enter room name">
+            </div>
+<!--            <div class="form-group">-->
+<!--                <label for="roomPassword">Room Password (optional)</label>-->
+<!--                <input type="password" id="roomPassword" name="roomPassword" placeholder="Password">-->
+<!--            </div>-->
+            <div class="form-group">
+                <button type="submit">Join/Create Room</button>
+            </div>
+<!--            <div class="form-group">-->
+<!--                <button type="submit">Create Room</button>-->
+<!--            </div>-->
+        </form>
+        </div>
+    </div>
+
+<!--<div class="input-area">-->
+<!--    <input type="text" placeholder="Type a message...">-->
+<!--</div>-->
+
+</body>
+
+
+
+{% endblock %}
